@@ -1,8 +1,9 @@
 import { ActionTypes } from '../constants/actionTypes';
 import axios from 'axios';
 
-const key = 'AIzaSyApv-JN9oi0Kpij2hpNXq77GJaEkXuYJDo'
-const cx = 'c520989f8286c4241';
+const key = process.env['REACT_APP_GKEY'];
+const cx = process.env['REACT_APP_GCX'];
+const ocp = process.env['REACT_APP_OCP'];
 
 export const setResults = (searchCriteria, engines) => {
   return async (dispatch) => {
@@ -15,7 +16,7 @@ export const setResults = (searchCriteria, engines) => {
       const bingResponse = await axios.get(`https://api.bing.microsoft.com/v7.0/search?q=${searchCriteria}`,
         {
           headers: {
-            'Ocp-Apim-Subscription-Key': '1a2c82d8bc80436689fa9c735d193f7e'
+            'Ocp-Apim-Subscription-Key': ocp
           }
         }
       );
