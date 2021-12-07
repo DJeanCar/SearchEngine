@@ -10,7 +10,7 @@ export const searchReducer = (state = initialState, action) => {
     case ActionTypes.SET_RESULTS:
       return {
         ...state,
-        results: [...state.results, ...payload],
+        results: [...payload],
       };
 
     default:

@@ -16,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
 
   const handleSearch = () => {
-    dispatch(setResults(searchCriteria));
+    dispatch(setResults(searchCriteria, engineSelected));
   };
 
   const handleKeyPress = (e) => {

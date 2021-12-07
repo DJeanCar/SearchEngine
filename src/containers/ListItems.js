@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { useSelector } from 'react-redux';
 import Item from './Item';
@@ -9,14 +10,17 @@ const ListItems = () => {
     return search;
   });
 
-  console.log('>>result', results)
   return (
-    <div>
+    <Container>
       {results.map(result => (
         <Item result={result} />
       ))}
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  max-width: 50%;
+`;
 
 export default ListItems;
