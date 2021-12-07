@@ -15,22 +15,3 @@ export const setResults = (searchCriteria) => {
     });
   };
 };
-
-export const setProducts = () => {
-  return async (dispatch) => {
-    const products = await axios.get('https://fakestoreapi.com/products');
-
-    dispatch({
-      type: ActionTypes.SET_PRODUCTS,
-      payload: products.data,
-    })
-  }
-  
-};
-
-export const selectedProduct = (product) => {
-  return {
-    type: ActionTypes.REMOVE_SELECTED_PRODUCT,
-    payload: product,
-  }
-};
