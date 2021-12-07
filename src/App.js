@@ -1,22 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import 'antd/dist/antd.css';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setResults } from './redux/actions';
+
+
+import Header from './containers/Header';
+import FormFields from './containers/FormFields';
+import ListItems from './containers/ListItems';
 
 function App() {
+  const [searchCriteria, setSearchCriteria] = useState('');
+  const [engineSelected, setEngineSelected] = useState([]);
+
+  const dispatch = useDispatch();
+
+  const handleSearch = () => {
+    dispatch(setResults(searchCriteria));
+  };
+
+  const handleKeyPress = (e) => {
+    setSearchCriteria(e.target.value);
+  }
+
+  const handleChange = (value) => {
+    setEngineSelected(value);
+  }
+
+  const checkIfButtonShouldBeEnable = () => !!searchCriteria &&  engineSelected.length !== 0
+
+  const shouldButtonEnabled = checkIfButtonShouldBeEnable();
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Header />
+        <FormFields
+          handleSearch={handleSearch}
+          shouldButtonEnabled={shouldButtonEnabled}
+          handleKeyPress={handleKeyPress}
+          handleChange={handleChange} />
+        <ListItems />
       </header>
     </div>
   );
