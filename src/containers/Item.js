@@ -10,7 +10,7 @@ const Item = ({ result }) => {
   }
 
   return (
-    <Result key={result.cacheId || result.id} onClick={handleClick}>
+    <Result onClick={handleClick} data-testid='item'>
       <Title>{result.title || result.name}</Title>
       <div>{result.snippet}</div>
     </Result>

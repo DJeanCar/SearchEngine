@@ -1,19 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useSelector } from 'react-redux';
+import { connect } from 'react-redux';
 import Item from './Item';
 
-const ListItems = () => {
-  const { results } = useSelector((state) => {
-    const { search } = state;
-    return search;
-  });
-
+const ListItems = ({ results }) => {
   return (
-    <Container>
+    <Container data-testid='search-items'>
       {results.map(result => (
-        <Item result={result} />
+        <Item key={result.cacheId || result.id} result={result} />
       ))}
     </Container>
   );
@@ -23,4 +18,8 @@ const Container = styled.div`
   max-width: 50%;
 `;
 
-export default ListItems;
+export default connect(
+  state => ({
+    results: state.search.results
+  })
+)(ListItems);
