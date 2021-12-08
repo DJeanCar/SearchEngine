@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import Item from './Item';
 
 const ListItems = ({ results }) => {
+
   return (
     <Container data-testid='search-items'>
-      {results.map(result => (
-        <Item key={result.cacheId || result.id} result={result} />
+      {results.map((result, index) => (
+        <Item key={index} result={result} />
       ))}
     </Container>
   );

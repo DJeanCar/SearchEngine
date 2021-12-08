@@ -7,6 +7,9 @@ const ocp = process.env['REACT_APP_OCP'];
 
 export const setResults = (searchCriteria, engines) => {
   return async (dispatch) => {
+    dispatch({
+      type: ActionTypes.SET_RESULTS_LOADING
+    })
     let response = [];
     if (engines.includes('google')) {
       const googleResponse = await axios.get(`https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&q=${searchCriteria}`);

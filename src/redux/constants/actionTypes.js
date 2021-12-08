@@ -1,3 +1,4 @@
 export const ActionTypes = {
   SET_RESULTS: 'SET_RESULTS',
+  SET_RESULTS_LOADING: 'SET_RESULTS_LADING',
 };

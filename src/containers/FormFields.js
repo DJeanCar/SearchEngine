@@ -1,10 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Input, Select, Button } from 'antd';
 
 const { Search } = Input;
 const { Option } = Select;
 
 const FormFields = ({
+  loading,
   handleSearch,
   handleKeyPress,
   handleChange,
@@ -21,7 +23,7 @@ const FormFields = ({
           size="large"
           onSearch={handleSearch}
           enterButton={
-            <Button data-testid='search-button' disabled={!shouldButtonEnabled} type="primary">Search</Button>
+            <Button loading={loading} data-testid='search-button' disabled={!shouldButtonEnabled} type="primary">Search</Button>
           }
         />
       </div>
@@ -35,4 +37,9 @@ const FormFields = ({
   );
 };
 
-export default FormFields;
+
+export default connect(
+  state => ({
+    loading: state.search.loading,
+  })
+)(FormFields);
